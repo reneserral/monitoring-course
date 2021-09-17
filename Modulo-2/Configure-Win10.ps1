@@ -314,7 +314,7 @@ if (Test-Path -Path "$DesktopFolder\Scripts") {
     Remove-Item "$DesktopFolder\Scripts" -Recurse -Force | Out-Null
 }
 mkdir "$DesktopFolder\Scripts" -Force | Out-Null
-& "$DesktopFolder\Git\bin\git.exe" clone https://github.com/manelrodero/Master-UPC-School.git "$DesktopFolder\Scripts"
+& "$DesktopFolder\Git\bin\git.exe" clone https://github.com/rene-serral/monitoring-course.git "$DesktopFolder\Scripts"
 
 # Creación carpeta C:\TEST
 if (!(Test-Path -Path "C:\TEST")) { mkdir "C:\TEST" | Out-Null }
@@ -449,7 +449,9 @@ Write-Host "Creando usuario 'test3' ... " -ForegroundColor Green -NoNewline
 net.exe user test3 /add Passw0rd! >$null
 
 # Final del script (evitar que se cierre)
-Write-Host "Pulsa una tecla para apagar el equipo ..."
-$tecla = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+#Write-Host "Pulsa una tecla para apagar el equipo ..."
+#$tecla = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
 
+Write-Host "OK, para acabar la configuración vamos a reiniciar la máquina ..."
+Start-Sleep 15
 Stop-Computer -Force

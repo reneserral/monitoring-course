@@ -12,7 +12,7 @@ reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender" /v "DisableAntiS
 
 :: GitHub elimina TLS1.0 y TLS1.1 (https://githubengineering.com/crypto-removal-notice/)
 >> %~n0.ps1 echo [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12
->> %~n0.ps1 echo Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/rene-serral/monitoring-course/main/Configure-Win10.ps1')
+>> %~n0.ps1 echo Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/rene-serral/monitoring-course/main/Modulo-2/Configure-Win10.ps1')
 
 
 PowerShell -NoProfile -ExecutionPolicy Bypass .\%~n0.ps1
