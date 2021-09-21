@@ -451,6 +451,22 @@ net.exe user test3 /add Passw0rd! >$null
 # Final del script (evitar que se cierre)
 #Write-Host "Pulsa una tecla para apagar el equipo ..."
 #$tecla = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+#
+# Descarga Wazuh Agent
+$progDownload = "wazuh-agent-4.2.1-1.msi"
+if (!(Test-Path -Path "$DesktopFolder\Downloads\$progDownload")) {
+    Write-Host "Descargando Wazuh Agent ... " -ForegroundColor Green -NoNewline
+    $start_time = Get-Date
+    Invoke-WebRequest "https://packages.wazuh.com/4.x/windows/wazuh-agent-4.2.1-1.msi" -OutFile "$DesktopFolder\Downloads\$progDownload"
+    Write-Host "$((Get-Date).Subtract($start_time).Seconds) segundo(s)" -ForegroundColor Yellow
+} else {
+    Write-Host "Wazuh Agent ya estaba descargado" -ForegroundColor Yellow
+}
+
+# Instalación de Wazuh Agent
+Write-Host "Instalando Wazuh Agent ... " -ForegroundColor Green -NoNewline
+"$DesktopFolder\Downloads\$progDownload" /q WAZUH_MANAGER="192.168.55.10" WAZUH_REGISTRATION_SERVER="192.168.55.10"
+Write-Host "OK" -ForegroundColor Yellow
 
 Write-Host "OK, para acabar la configuración vamos a reiniciar la máquina ..."
 Start-Sleep 15
