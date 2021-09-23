@@ -16,10 +16,16 @@ Vagrant.configure("2") do |config|
     debianbullseye1.vm.network :private_network, ip: "192.168.55.11"
     debianbullseye1.vm.provision "shell", inline: <<-SHELL
       apt update
-      apt install -qy git
+      apt install -qy git systemd-timesyncd curl gnupg2
       git clone https://github.com/rene-serral/monitoring-course.git ~vagrant/Scripts
       chown vagrant.vagrant -R ~vagrant/Scripts
-      usermod -a -G vboxsf vagrant
+      curl -s https://packages.wazuh.com/key/GPG-KEY-WAZUH | apt-key add -
+      echo "deb https://packages.wazuh.com/4.x/apt/ stable main" | tee -a /etc/apt/sources.list.d/wazuh.list
+      apt-get update
+      WAZUH_MANAGER="192.168.55.10" apt-get install wazuh-agent
+      systemctl daemon-reload
+      systemctl enable wazuh-agent
+      systemctl start wazuh-agent
       SHELL
   end
 
@@ -32,10 +38,9 @@ Vagrant.configure("2") do |config|
     debianbullseye2.vm.network :private_network, ip: "192.168.55.12"
     debianbullseye2.vm.provision "shell", inline: <<-SHELL
       apt update
-      apt install -qy git
+      apt install -qy git systemd-timesyncd
       git clone https://github.com/rene-serral/monitoring-course.git ~vagrant/Scripts
       chown vagrant.vagrant -R ~vagrant/Scripts
-      usermod -a -G vboxsf vagrant
       SHELL
   end
 
@@ -55,6 +60,10 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define :windows10 do |windows10|
+    windows10.vm.provider :virtualbox do |vb|
+      vb.customize ['modifyvm', :id, '--usb', 'on']
+      vb.customize ["modifyvm", :id, "--usbehci", "on"]
+    end
     windows10.vm.hostname = "windows10"
     windows10.vm.network :private_network, ip: "192.168.55.21"
     windows10.vm.box = "peru/windows-10-enterprise-x64-eval"
