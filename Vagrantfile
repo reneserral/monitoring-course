@@ -13,16 +13,17 @@ Vagrant.configure("2") do |config|
     end
     debianbullseye1.vm.box = "debian/bullseye64"
     debianbullseye1.vm.hostname = "debianbullseye1"
-    debianbullseye1.vm.network :private_network, ip: "192.168.55.11"
+    debianbullseye1.vm.network :private_network, ip: "192.168.38.11"
     debianbullseye1.vm.provision "shell", inline: <<-SHELL
       apt update
+      apt upgrade -y
       apt install -qy git systemd-timesyncd curl gnupg2
       git clone https://github.com/rene-serral/monitoring-course.git ~vagrant/Scripts
       chown vagrant.vagrant -R ~vagrant/Scripts
       curl -s https://packages.wazuh.com/key/GPG-KEY-WAZUH | apt-key add -
       echo "deb https://packages.wazuh.com/4.x/apt/ stable main" | tee -a /etc/apt/sources.list.d/wazuh.list
       apt-get update
-      WAZUH_MANAGER="192.168.55.10" apt-get install wazuh-agent
+      WAZUH_MANAGER="192.168.38.10" apt-get install wazuh-agent
       systemctl daemon-reload
       systemctl enable wazuh-agent
       systemctl start wazuh-agent
@@ -35,12 +36,20 @@ Vagrant.configure("2") do |config|
     end
     debianbullseye2.vm.box = "debian/bullseye64"
     debianbullseye2.vm.hostname = "debianbullseye2"
-    debianbullseye2.vm.network :private_network, ip: "192.168.55.12"
+    debianbullseye2.vm.network :private_network, ip: "192.168.38.12"
     debianbullseye2.vm.provision "shell", inline: <<-SHELL
       apt update
-      apt install -qy git systemd-timesyncd
+      apt upgrade -y
+      apt install -qy git systemd-timesyncd curl gnupg2
       git clone https://github.com/rene-serral/monitoring-course.git ~vagrant/Scripts
       chown vagrant.vagrant -R ~vagrant/Scripts
+      curl -s https://packages.wazuh.com/key/GPG-KEY-WAZUH | apt-key add -
+      echo "deb https://packages.wazuh.com/4.x/apt/ stable main" | tee -a /etc/apt/sources.list.d/wazuh.list
+      apt-get update
+      WAZUH_MANAGER="192.168.38.10" apt-get install wazuh-agent
+      systemctl daemon-reload
+      systemctl enable wazuh-agent
+      systemctl start wazuh-agent
       SHELL
   end
 
@@ -55,7 +64,7 @@ Vagrant.configure("2") do |config|
     end
 
     wazuh.vm.hostname = "wazuh"
-    wazuh.vm.network :private_network, ip: "192.168.55.10"
+    wazuh.vm.network :private_network, ip: "192.168.38.10"
     wazuh.vm.box = "uahccre/wazuh-manager"
   end
 
@@ -65,16 +74,22 @@ Vagrant.configure("2") do |config|
       vb.customize ["modifyvm", :id, "--usbehci", "on"]
     end
     windows10.vm.hostname = "windows10"
-    windows10.vm.network :private_network, ip: "192.168.55.21"
+    windows10.vm.network :private_network, ip: "192.168.38.21"
     windows10.vm.box = "peru/windows-10-enterprise-x64-eval"
     windows10.vm.provision "shell", path: "https://raw.githubusercontent.com/rene-serral/monitoring-course/main/Modulo-2/Configure-base.bat"
   end
 
   config.vm.define :windows do |windows|
     windows.vm.hostname = "windows"
-    windows.vm.network :private_network, ip: "192.168.55.20"
+    windows.vm.network :private_network, ip: "192.168.38.20"
     windows.vm.box = "peru/windows-server-2022-standard-x64-eval"
     windows.vm.box_version = "20210907.01"
+  end
+
+  config.vm.define :ossim do |ossim|
+    ossim.vm.box = "ifly53e/av_5.7.4"
+    ossim.vm.box_version = "0.0.1"
+    ossim.vm.network :private_network, ip: "192.168.38.200"
   end
 
 end
