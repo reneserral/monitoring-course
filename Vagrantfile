@@ -92,4 +92,10 @@ Vagrant.configure("2") do |config|
     ossim.vm.network :private_network, ip: "192.168.38.200"
   end
 
+  config.vm.define :splunk do |splunk|
+    splunk.vm.box = "cybersecurity/splunk"
+    splunk.vm.box_version = "0.0.1"
+    splunk.vm.network :private_network, ip: "192.168.38.13"
+  end
+
 end
