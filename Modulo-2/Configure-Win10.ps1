@@ -368,69 +368,6 @@ if (!(Test-Path -Path "$DesktopFolder\Downloads\$progDownload")) {
 }
 #>
 
-# Descarga VirtualBox SHA Certs
-$progDownload = "vbox-sha1.cer"
-if (!(Test-Path -Path "$DesktopFolder\Downloads\$progDownload")) {
-    Write-Host "Descargando VirtualBox SHA1 Cert ... " -ForegroundColor Green -NoNewline
-    $start_time = Get-Date
-    Invoke-WebRequest "https://upc0-my.sharepoint.com/:u:/g/personal/manel_rodero_upc_edu/EbAf4B88tcVKpjEUXKhVixoBjkWrdhk5wyCRopdMs4CLZw?download=1" -OutFile "$DesktopFolder\Downloads\$progDownload"
-    Write-Host "$((Get-Date).Subtract($start_time).Seconds) segundo(s)" -ForegroundColor Yellow
-} else {
-    Write-Host "VirtualBox SHA1 Cert ya esta descargado" -ForegroundColor Yellow
-}
-
-$progDownload = "vbox-sha256.cer"
-if (!(Test-Path -Path "$DesktopFolder\Downloads\$progDownload")) {
-    Write-Host "Descargando VirtualBox SHA256 Cert ... " -ForegroundColor Green -NoNewline
-    $start_time = Get-Date
-    Invoke-WebRequest "https://upc0-my.sharepoint.com/:u:/g/personal/manel_rodero_upc_edu/ERAUDOeshGlDviL61DwcUIUBaY2n3qj9uNswfgwCGfNfvg?download=1" -OutFile "$DesktopFolder\Downloads\$progDownload"
-    Write-Host "$((Get-Date).Subtract($start_time).Seconds) segundo(s)" -ForegroundColor Yellow
-} else {
-    Write-Host "VirtualBox SHA256 Cert ya esta descargado" -ForegroundColor Yellow
-}
-
-$progDownload = "VBoxCertUtil.exe"
-if (!(Test-Path -Path "$DesktopFolder\Downloads\$progDownload")) {
-    Write-Host "Descargando VirtualBox Cert Utility ... " -ForegroundColor Green -NoNewline
-    $start_time = Get-Date
-    Invoke-WebRequest "https://upc0-my.sharepoint.com/:u:/g/personal/manel_rodero_upc_edu/EXp0uO3MJ6tJiBiQytsWa3YBiaN2DhZh_9der73F64ylKw?download=1" -OutFile "$DesktopFolder\Downloads\$progDownload"
-    Write-Host "$((Get-Date).Subtract($start_time).Seconds) segundo(s)" -ForegroundColor Yellow
-} else {
-    Write-Host "VirtualBox Cert Utility ya esta descargado" -ForegroundColor Yellow
-}
-
-# Instalación de VirtualBox SHA Certs
-Write-Host "Instalando VirtualBox SHA Certs ... " -ForegroundColor Green -NoNewline
-& "$DesktopFolder\Downloads\$progDownload" add-trusted-publisher "$DesktopFolder\Downloads\vbox-sha1.cer" --root "$DesktopFolder\Downloads\vbox-sha1.cer" | Out-Null
-& "$DesktopFolder\Downloads\$progDownload" add-trusted-publisher "$DesktopFolder\Downloads\vbox-sha256.cer" --root "$DesktopFolder\Downloads\vbox-sha256.cer" | Out-Null
-Write-Host "OK" -ForegroundColor Yellow
-
-# Descarga VirtualBox Guest Additions
-#$progDownload = "VBoxWindowsAdditions-x86.exe"
-#if (!(Test-Path -Path "$DesktopFolder\Downloads\$progDownload")) {
-#    Write-Host "Descargando VirtualBox GA x86 ... " -ForegroundColor Green -NoNewline
-#    $start_time = Get-Date
-#    Invoke-WebRequest "https://upc0-my.sharepoint.com/:u:/g/personal/manel_rodero_upc_edu/EbUzzIFqVI5MkGCvgnfZRCYBD2u370r8LH3BuOyW6LUXRQ?download=1" -OutFile "$DesktopFolder\Downloads\$progDownload"
-#    Write-Host "$((Get-Date).Subtract($start_time).Seconds) segundo(s)" -ForegroundColor Yellow
-#} else {
-#    Write-Host "VirtualBox GA x86 ya esta descargado" -ForegroundColor Yellow
-#}
-
-#$progDownload = "VBoxWindowsAdditions.exe"
-#if (!(Test-Path -Path "$DesktopFolder\Downloads\$progDownload")) {
-#    Write-Host "Descargando VirtualBox GA ... " -ForegroundColor Green -NoNewline
-#    $start_time = Get-Date
-#    Invoke-WebRequest "https://upc0-my.sharepoint.com/:u:/g/personal/manel_rodero_upc_edu/EQCzmYyhAUdAoaEzrKAuNscB86Y9A6fLYHlAXz8XMnRPnA?download=1" -OutFile "$DesktopFolder\Downloads\$progDownload"
-#    Write-Host "$((Get-Date).Subtract($start_time).Seconds) segundo(s)" -ForegroundColor Yellow
-#} else {
-#    Write-Host "VirtualBox GA ya esta descargado" -ForegroundColor Yellow
-#}
-
-# Instalación de VirtualBox Guest Additions
-#Write-Host "Instalando VirtualBox Guest Additions ... " -ForegroundColor Green -NoNewline
-#& "$DesktopFolder\Downloads\$progDownload" /S
-#Write-Host "OK" -ForegroundColor Yellow
-
 # Configuración de IP estática
 #Write-Host "Configurando Static IP ... " -ForegroundColor Green -NoNewline
 #netsh.exe interface ipv4 set address "Ethernet 3" static 10.0.20.81 255.255.255.0 10.0.20.1
@@ -471,3 +408,4 @@ Write-Host "OK" -ForegroundColor Yellow
 Write-Host "OK, para acabar la configuración vamos a reiniciar la máquina ..."
 Start-Sleep 15
 Stop-Computer -Force
+
