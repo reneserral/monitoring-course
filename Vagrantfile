@@ -72,6 +72,7 @@ Vagrant.configure("2") do |config|
     windows10.vm.provider :virtualbox do |vb|
       vb.customize ['modifyvm', :id, '--usb', 'on']
       vb.customize ["modifyvm", :id, "--usbehci", "on"]
+      vb.customize ["modifyvm", :id, "--memory", "2048", "--cpus", "2"]
     end
     windows10.vm.hostname = "windows10"
     windows10.vm.network :private_network, ip: "192.168.38.21"
@@ -80,6 +81,9 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define :windows2022 do |windows2022|
+    windows2022.vm.provider :virtualbox do |vb|
+      vb.customize ["modifyvm", :id, "--memory", "2048", "--cpus", "2"]
+    end
     windows2022.vm.hostname = "windows"
     windows2022.vm.network :private_network, ip: "192.168.38.20"
     windows2022.vm.box = "peru/windows-server-2022-standard-x64-eval"
