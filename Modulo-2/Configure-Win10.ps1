@@ -92,7 +92,7 @@ if (!(Test-Path -Path "$DesktopFolder\Downloads\$progDownload")) {
 # Instalación de LGPO
 Write-Host "Descomprimiendo LGPO ... " -ForegroundColor Green -NoNewline
 if (Test-Path -Path "$DesktopFolder\LGPO") { Remove-Item -Path "$DesktopFolder\LGPO" -Recurse -Force }
-& "$env:ProgramFiles (x86)\7-Zip\7z.exe" x -o"$DesktopFolder\LGPO" -y "$DesktopFolder\Downloads\$progDownload" | Out-Null
+& "$env:ProgramFiles\7-Zip\7z.exe" x -o"$DesktopFolder\LGPO" -y "$DesktopFolder\Downloads\$progDownload" | Out-Null
 Write-Host "OK" -ForegroundColor Yellow
 
 # Descarga Git-Portable
@@ -109,7 +109,7 @@ if (!(Test-Path -Path "$DesktopFolder\Downloads\$progDownload")) {
 # Instalación de Git-Portable
 Write-Host "Descomprimiendo Git Portable ... " -ForegroundColor Green -NoNewline
 if (Test-Path -Path "$DesktopFolder\Git") { Remove-Item -Path "$DesktopFolder\Git" -Recurse -Force }
-& "$env:ProgramFiles (x86)\7-Zip\7z.exe" x -o"$DesktopFolder\Git" -y "$DesktopFolder\Downloads\$progDownload" | Out-Null
+& "$env:ProgramFiles\7-Zip\7z.exe" x -o"$DesktopFolder\Git" -y "$DesktopFolder\Downloads\$progDownload" | Out-Null
 Write-Host "OK" -ForegroundColor Yellow
 
 # Descarga Sysinternals Suite
@@ -126,7 +126,7 @@ if (!(Test-Path -Path "$DesktopFolder\Downloads\$progDownload")) {
 # Instalación de Sysinternals Suite
 Write-Host "Descomprimiendo Sysinternals Suite ... " -ForegroundColor Green -NoNewline
 if (Test-Path -Path "$DesktopFolder\Sysinternals") { Remove-Item -Path "$DesktopFolder\Sysinternals" -Recurse -Force }
-& "$env:ProgramFiles (x86)\7-Zip\7z.exe" x -o"$DesktopFolder\Sysinternals" -y "$DesktopFolder\Downloads\$progDownload" | Out-Null
+& "$env:ProgramFiles\7-Zip\7z.exe" x -o"$DesktopFolder\Sysinternals" -y "$DesktopFolder\Downloads\$progDownload" | Out-Null
 Write-Host "OK" -ForegroundColor Yellow
 
 # Descarga Notepad++
@@ -143,7 +143,7 @@ if (!(Test-Path -Path "$DesktopFolder\Downloads\$progDownload")) {
 # Instalación de Notepad++
 Write-Host "Descomprimiendo Notepad++ ... " -ForegroundColor Green -NoNewline
 if (Test-Path -Path "$DesktopFolder\Notepad++") { Remove-Item -Path "$DesktopFolder\Notepad++" -Recurse -Force }
-& "$env:ProgramFiles (x86)\7-Zip\7z.exe" x -o"$DesktopFolder\Notepad++" -y "$DesktopFolder\Downloads\$progDownload" | Out-Null
+& "$env:ProgramFiles\7-Zip\7z.exe" x -o"$DesktopFolder\Notepad++" -y "$DesktopFolder\Downloads\$progDownload" | Out-Null
 Write-Host "OK" -ForegroundColor Yellow
 
 # Descarga NirCmd
@@ -160,7 +160,7 @@ if (!(Test-Path -Path "$DesktopFolder\Downloads\$progDownload")) {
 # Instalación de NirCmd
 Write-Host "Descomprimiendo NirCmd ... " -ForegroundColor Green -NoNewline
 if (Test-Path -Path "$DesktopFolder\Nirsoft") { Remove-Item -Path "$DesktopFolder\Nirsoft" -Recurse -Force }
-& "$env:ProgramFiles (x86)\7-Zip\7z.exe" x -o"$DesktopFolder\Nirsoft" -y "$DesktopFolder\Downloads\$progDownload" | Out-Null
+& "$env:ProgramFiles\7-Zip\7z.exe" x -o"$DesktopFolder\Nirsoft" -y "$DesktopFolder\Downloads\$progDownload" | Out-Null
 Write-Host "OK" -ForegroundColor Yellow
 
 <#
@@ -178,7 +178,7 @@ if (!(Test-Path -Path "$DesktopFolder\Downloads\$progDownload")) {
 # Instalación de Hstart
 Write-Host "Descomprimiendo Hstart ... " -ForegroundColor Green -NoNewline
 if (Test-Path -Path "$DesktopFolder\Hstart") { Remove-Item -Path "$DesktopFolder\Hstart" -Recurse -Force }
-& "$env:ProgramFiles (x86)\7-Zip\7z.exe" x -o"$DesktopFolder\Hstart" -y "$DesktopFolder\Downloads\$progDownload" "hstart.exe" | Out-Null
+& "$env:ProgramFiles\7-Zip\7z.exe" x -o"$DesktopFolder\Hstart" -y "$DesktopFolder\Downloads\$progDownload" "hstart.exe" | Out-Null
 Write-Host "OK" -ForegroundColor Yellow
 #>
 
@@ -199,7 +199,7 @@ Write-Host "OK" -ForegroundColor Yellow
 ## Instalación de Logger
 #Write-Host "Descomprimiendo Logger ... " -ForegroundColor Green -NoNewline
 #if (Test-Path -Path "$DesktopFolder\Logger") { Remove-Item -Path "$DesktopFolder\Logger" -Recurse -Force }
-#& "$env:ProgramFiles (x86)\7-Zip\7z.exe" x -o"$DesktopFolder\Logger" -y "$DesktopFolder\Downloads\$progDownload" | Out-Null
+#& "$env:ProgramFiles\7-Zip\7z.exe" x -o"$DesktopFolder\Logger" -y "$DesktopFolder\Downloads\$progDownload" | Out-Null
 #Write-Host "OK" -ForegroundColor Yellow
 
 # Descarga Event to Syslog
@@ -216,7 +216,7 @@ if (!(Test-Path -Path "$DesktopFolder\Downloads\$progDownload")) {
 # Instalación de Event to Syslog
 Write-Host "Descomprimiendo Event to Syslog ... " -ForegroundColor Green -NoNewline
 if (Test-Path -Path "$DesktopFolder\EventSyslog") { Remove-Item -Path "$DesktopFolder\EventSyslog" -Recurse -Force }
-& "$env:ProgramFiles (x86)\7-Zip\7z.exe" e -o"$DesktopFolder\EventSyslog" -y "$DesktopFolder\Downloads\$progDownload" | Out-Null
+& "$env:ProgramFiles\7-Zip\7z.exe" e -o"$DesktopFolder\EventSyslog" -y "$DesktopFolder\Downloads\$progDownload" | Out-Null
 Write-Host "OK" -ForegroundColor Yellow
 
 # Descarga NXLog-CE (si cambia la versión, hay que modificar fichero "test-nxlog.bat")
@@ -244,7 +244,7 @@ if (!(Test-Path -Path "$DesktopFolder\Downloads\$progDownload")) {
 # Instalación de Visual Syslog Server
 Write-Host "Descomprimiendo Visual Syslog Server ... " -ForegroundColor Green -NoNewline
 if (Test-Path -Path "$DesktopFolder\VisualSyslog") { Remove-Item -Path "$DesktopFolder\VisualSyslog" -Recurse -Force }
-& "$env:ProgramFiles (x86)\7-Zip\7z.exe" e -o"$DesktopFolder\VisualSyslog" -y "$DesktopFolder\Downloads\$progDownload" | Out-Null
+& "$env:ProgramFiles\7-Zip\7z.exe" e -o"$DesktopFolder\VisualSyslog" -y "$DesktopFolder\Downloads\$progDownload" | Out-Null
 Write-Host "OK" -ForegroundColor Yellow
 
 # Descarga sysmonconfig-export.xml
