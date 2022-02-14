@@ -83,7 +83,7 @@ $progDownload = "LGPO.zip"
 if (!(Test-Path -Path "$DesktopFolder\Downloads\$progDownload")) {
     Write-Host "Descargando LGPO ... " -ForegroundColor Green -NoNewline
     $start_time = Get-Date
-    Invoke-WebRequest https://www.microsoft.com/en-us/download/confirmation.aspx?id=55319&6B49FDFB-8E5B-4B07-BC31-15695C5A2143=1 -OutFile "$DesktopFolder\Downloads\$progDownload"
+    Invoke-WebRequest "https://www.microsoft.com/en-us/download/confirmation.aspx?id=55319&6B49FDFB-8E5B-4B07-BC31-15695C5A2143=1" -OutFile "$DesktopFolder\Downloads\$progDownload"
     Write-Host "$((Get-Date).Subtract($start_time).Seconds) segundo(s)" -ForegroundColor Yellow
 } else {
     Write-Host "LGPO ya estaba descargado" -ForegroundColor Yellow
