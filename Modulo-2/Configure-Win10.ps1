@@ -96,11 +96,11 @@ if (Test-Path -Path "$DesktopFolder\LGPO") { Remove-Item -Path "$DesktopFolder\L
 Write-Host "OK" -ForegroundColor Yellow
 
 # Descarga Git-Portable
-$progDownload = "Git-2.35.1.2-64-bit.zip"
+$progDownload = "Git-2.36.1-64-bit.exe"
 if (!(Test-Path -Path "$DesktopFolder\Downloads\$progDownload")) {
     Write-Host "Descargando Git-Portable ... " -ForegroundColor Green -NoNewline
     $start_time = Get-Date
-    Invoke-WebRequest https://github.com/git-for-windows/git/releases/download/v2.35.1.windows.2/$progDownload -OutFile "$DesktopFolder\Downloads\$progDownload"
+    Invoke-WebRequest https://github.com/git-for-windows/git/releases/download/v2.36.1.windows.1/$progDownload -OutFile "$DesktopFolder\Downloads\$progDownload"
     Write-Host "$((Get-Date).Subtract($start_time).Seconds) segundo(s)" -ForegroundColor Yellow
 } else {
     Write-Host "Git-Portable ya esta descargado" -ForegroundColor Yellow
@@ -109,7 +109,7 @@ if (!(Test-Path -Path "$DesktopFolder\Downloads\$progDownload")) {
 # Instalación de Git-Portable
 Write-Host "Descomprimiendo Git Portable ... " -ForegroundColor Green -NoNewline
 if (Test-Path -Path "$DesktopFolder\Git") { Remove-Item -Path "$DesktopFolder\Git" -Recurse -Force }
-& "$env:ProgramFiles\7-Zip\7z.exe" x -o"$DesktopFolder\Git" -y "$DesktopFolder\Downloads\$progDownload" | Out-Null
+& "$DesktopFolder\Downloads\$progDownload" /SILENT
 Write-Host "OK" -ForegroundColor Yellow
 
 # Descarga Sysinternals Suite
@@ -130,21 +130,21 @@ if (Test-Path -Path "$DesktopFolder\Sysinternals") { Remove-Item -Path "$Desktop
 Write-Host "OK" -ForegroundColor Yellow
 
 # Descarga Notepad++
-$progDownload = "npp.8.3.portable.x64.7z"
-if (!(Test-Path -Path "$DesktopFolder\Downloads\$progDownload")) {
-    Write-Host "Descargando Notepad++ ... " -ForegroundColor Green -NoNewline
-    $start_time = Get-Date
-    Invoke-WebRequest https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.3/$progDownload -OutFile "$DesktopFolder\Downloads\$progDownload"
-    Write-Host "$((Get-Date).Subtract($start_time).Seconds) segundo(s)" -ForegroundColor Yellow
-} else {
-    Write-Host "Notepad++ ya esta descargado" -ForegroundColor Yellow
-}
-
-# Instalación de Notepad++
-Write-Host "Descomprimiendo Notepad++ ... " -ForegroundColor Green -NoNewline
-if (Test-Path -Path "$DesktopFolder\Notepad++") { Remove-Item -Path "$DesktopFolder\Notepad++" -Recurse -Force }
-& "$env:ProgramFiles\7-Zip\7z.exe" x -o"$DesktopFolder\Notepad++" -y "$DesktopFolder\Downloads\$progDownload" | Out-Null
-Write-Host "OK" -ForegroundColor Yellow
+#$progDownload = "npp.8.3.portable.x64.7z"
+#if (!(Test-Path -Path "$DesktopFolder\Downloads\$progDownload")) {
+#    Write-Host "Descargando Notepad++ ... " -ForegroundColor Green -NoNewline
+#    $start_time = Get-Date
+#    Invoke-WebRequest https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.3/$progDownload -OutFile "$DesktopFolder\Downloads\$progDownload"
+#    Write-Host "$((Get-Date).Subtract($start_time).Seconds) segundo(s)" -ForegroundColor Yellow
+#} else {
+#    Write-Host "Notepad++ ya esta descargado" -ForegroundColor Yellow
+#}
+#
+## Instalación de Notepad++
+#Write-Host "Descomprimiendo Notepad++ ... " -ForegroundColor Green -NoNewline
+#if (Test-Path -Path "$DesktopFolder\Notepad++") { Remove-Item -Path "$DesktopFolder\Notepad++" -Recurse -Force }
+#& "$env:ProgramFiles\7-Zip\7z.exe" x -o"$DesktopFolder\Notepad++" -y "$DesktopFolder\Downloads\$progDownload" | Out-Null
+#Write-Host "OK" -ForegroundColor Yellow
 
 # Descarga NirCmd
 $progDownload = "nircmd.zip"
@@ -163,7 +163,7 @@ if (Test-Path -Path "$DesktopFolder\Nirsoft") { Remove-Item -Path "$DesktopFolde
 & "$env:ProgramFiles\7-Zip\7z.exe" x -o"$DesktopFolder\Nirsoft" -y "$DesktopFolder\Downloads\$progDownload" | Out-Null
 Write-Host "OK" -ForegroundColor Yellow
 
-<#
+#
 # Descarga Hstart
 $progDownload = "Hstart_4.9-setup.exe"
 if (!(Test-Path -Path "$DesktopFolder\Downloads\$progDownload")) {
@@ -253,8 +253,8 @@ if (!(Test-Path -Path "$DesktopFolder\Sysinternals\sysmonconfig-export-swift.xml
     $start_time = Get-Date
     # Invoke-WebRequest https://github.com/SwiftOnSecurity/sysmon-config/raw/master/sysmonconfig-export.xml -OutFile "$DesktopFolder\Sysinternals\sysmonconfig-export-swift.xml"
     # https://drive.google.com/file/d/1OFrDCr7nT-agY6Wd9VWA0q3u4qbH_pr4/view?usp=sharing
-    # Invoke-WebRequest "https://drive.google.com/uc?id=1OFrDCr7nT-agY6Wd9VWA0q3u4qbH_pr4&export=download" -OutFile "$DesktopFolder\Sysinternals\sysmonconfig-export-swift.xml"
-    Invoke-WebRequest "https://upc0-my.sharepoint.com/:u:/g/personal/manel_rodero_upc_edu/ERkdSNrfHTtHh9S5tYOKMEsBIW7iSFv9rOxXElgyxAsfjQ?download=1" -OutFile "$DesktopFolder\Sysinternals\sysmonconfig-export-swift.xml"
+    Invoke-WebRequest "https://drive.google.com/uc?id=1OFrDCr7nT-agY6Wd9VWA0q3u4qbH_pr4&export=download" -OutFile "$DesktopFolder\Sysinternals\sysmonconfig-export-swift.xml"
+    # Invoke-WebRequest "https://upc0-my.sharepoint.com/:u:/g/personal/manel_rodero_upc_edu/ERkdSNrfHTtHh9S5tYOKMEsBIW7iSFv9rOxXElgyxAsfjQ?download=1" -OutFile "$DesktopFolder\Sysinternals\sysmonconfig-export-swift.xml"
     Write-Host "$((Get-Date).Subtract($start_time).Seconds) segundo(s)" -ForegroundColor Yellow
 } else {
     Write-Host "sysmonconfig SwiftOnSecurity ya esta descargado" -ForegroundColor Yellow
@@ -266,8 +266,8 @@ if (!(Test-Path -Path "$DesktopFolder\Sysinternals\sysmonconfig-export-ion.xml")
     $start_time = Get-Date
     # Invoke-WebRequest https://github.com/ion-storm/sysmon-config/raw/master/sysmonconfig-export.xml -OutFile "$DesktopFolder\Sysinternals\sysmonconfig-export-ion.xml"
     # https://drive.google.com/file/d/1SU9wyYIaWab436COcKjI_fdKEUNnE3EA/view?usp=sharing
-    # Invoke-WebRequest "https://drive.google.com/uc?id=1SU9wyYIaWab436COcKjI_fdKEUNnE3EA&export=download" -OutFile "$DesktopFolder\Sysinternals\sysmonconfig-export-ion.xml"
-    Invoke-WebRequest "https://upc0-my.sharepoint.com/:u:/g/personal/manel_rodero_upc_edu/Ea2Zj_6xhW1Nm-US0xrEYr8BZiQ8BhfbeiyGivVAM-vNLA?download=1" -OutFile "$DesktopFolder\Sysinternals\sysmonconfig-export-ion.xml"
+    Invoke-WebRequest "https://drive.google.com/uc?id=1SU9wyYIaWab436COcKjI_fdKEUNnE3EA&export=download" -OutFile "$DesktopFolder\Sysinternals\sysmonconfig-export-ion.xml"
+    # Invoke-WebRequest "https://upc0-my.sharepoint.com/:u:/g/personal/manel_rodero_upc_edu/Ea2Zj_6xhW1Nm-US0xrEYr8BZiQ8BhfbeiyGivVAM-vNLA?download=1" -OutFile "$DesktopFolder\Sysinternals\sysmonconfig-export-ion.xml"
     Write-Host "$((Get-Date).Subtract($start_time).Seconds) segundo(s)" -ForegroundColor Yellow
 } else {
     Write-Host "sysmonconfig Ion-Storm ya esta descargado" -ForegroundColor Yellow
@@ -277,8 +277,8 @@ if (!(Test-Path -Path "$DesktopFolder\Sysinternals\sysmonconfig-export-ion.xml")
 if (!(Test-Path -Path "$DesktopFolder\Sysinternals\sysmonconfig-export-olaf.xml")) {
     Write-Host "Descargando sysmonconfig Olaf Hartong ... " -ForegroundColor Green -NoNewline
     $start_time = Get-Date
-    # Invoke-WebRequest https://raw.githubusercontent.com/olafhartong/sysmon-modular/master/sysmonconfig.xml -OutFile "$DesktopFolder\Sysinternals\sysmonconfig-export-olaf.xml"
-    Invoke-WebRequest "https://upc0-my.sharepoint.com/:u:/g/personal/manel_rodero_upc_edu/ES83WRVSPCpKhfn2BcREZXYBKpWcQzD3s_-aoc3aXncH1w?download=1" -OutFile "$DesktopFolder\Sysinternals\sysmonconfig-export-olaf.xml"
+    Invoke-WebRequest https://raw.githubusercontent.com/olafhartong/sysmon-modular/master/sysmonconfig.xml -OutFile "$DesktopFolder\Sysinternals\sysmonconfig-export-olaf.xml"
+    # Invoke-WebRequest "https://upc0-my.sharepoint.com/:u:/g/personal/manel_rodero_upc_edu/ES83WRVSPCpKhfn2BcREZXYBKpWcQzD3s_-aoc3aXncH1w?download=1" -OutFile "$DesktopFolder\Sysinternals\sysmonconfig-export-olaf.xml"
     Write-Host "$((Get-Date).Subtract($start_time).Seconds) segundo(s)" -ForegroundColor Yellow
 } else {
     Write-Host "sysmonconfig Olaf Hartong ya esta descargado" -ForegroundColor Yellow
@@ -289,7 +289,7 @@ if (Test-Path -Path "$DesktopFolder\Scripts") {
     Remove-Item "$DesktopFolder\Scripts" -Recurse -Force | Out-Null
 }
 mkdir "$DesktopFolder\Scripts" -Force | Out-Null
-& "$DesktopFolder\Git\bin\git.exe" clone https://github.com/rene-serral/monitoring-course.git "$DesktopFolder\Scripts"
+& "git" clone https://github.com/rene-serral/monitoring-course.git "$DesktopFolder\Scripts"
 
 # Creación carpeta C:\TEST
 if (!(Test-Path -Path "C:\TEST")) { mkdir "C:\TEST" | Out-Null }
@@ -301,8 +301,8 @@ if (!(Test-Path -Path "$DesktopFolder\Downloads\$progDownload")) {
     $start_time = Get-Date
     # Invoke-WebRequest https://updates.atomicorp.com/channels/atomic/windows/$progDownload -OutFile "$DesktopFolder\Downloads\$progDownload"
     # https://drive.google.com/file/d/1mXAfYBZuNvXTAMXO2yov4D61ctb2D5Di/view?usp=sharing
-    # Invoke-WebRequest "https://drive.google.com/uc?id=1mXAfYBZuNvXTAMXO2yov4D61ctb2D5Di&export=download" -OutFile "$DesktopFolder\Downloads\$progDownload"
-    Invoke-WebRequest "https://upc0-my.sharepoint.com/:u:/g/personal/manel_rodero_upc_edu/EYCpoIMgIglNoK0YT27IxLcBbpbNnPbkfjmWh0mWLjTGSg?download=1" -OutFile "$DesktopFolder\Downloads\$progDownload"
+    Invoke-WebRequest "https://drive.google.com/uc?id=1mXAfYBZuNvXTAMXO2yov4D61ctb2D5Di&export=download" -OutFile "$DesktopFolder\Downloads\$progDownload"
+    # Invoke-WebRequest "https://upc0-my.sharepoint.com/:u:/g/personal/manel_rodero_upc_edu/EYCpoIMgIglNoK0YT27IxLcBbpbNnPbkfjmWh0mWLjTGSg?download=1" -OutFile "$DesktopFolder\Downloads\$progDownload"
     Write-Host "$((Get-Date).Subtract($start_time).Seconds) segundo(s)" -ForegroundColor Yellow
 } else {
     Write-Host "OSSEC ya esta descargado" -ForegroundColor Yellow
@@ -310,38 +310,37 @@ if (!(Test-Path -Path "$DesktopFolder\Downloads\$progDownload")) {
 
 #
 # Descarga Maltego
-$progDownload = "MaltegoSetup.v4.1.13.11516.exe"
+$progDownload = "MaltegoSetup.JRE64.v4.3.0.exe"
 if (!(Test-Path -Path "$DesktopFolder\Downloads\$progDownload")) {
     Write-Host "Descargando Maltego ... " -ForegroundColor Green -NoNewline
     $start_time = Get-Date
-    Invoke-WebRequest https://www.paterva.com/malv41/$progDownload -OutFile "$DesktopFolder\Downloads\$progDownload"
+    Invoke-WebRequest https://maltego-downloads.s3.us-east-2.amazonaws.com/windows/$progDownload -OutFile "$DesktopFolder\Downloads\$progDownload"
     Write-Host "$((Get-Date).Subtract($start_time).Seconds) segundo(s)" -ForegroundColor Yellow
 } else {
     Write-Host "Maltego ya esta descargado" -ForegroundColor Yellow
 }
 
 # Descarga Shodan Entities
-$progDownload = "shodan-maltego-entities.mtz"
-if (!(Test-Path -Path "$DesktopFolder\Downloads\$progDownload")) {
-    Write-Host "Descargando Shodan Entities ... " -ForegroundColor Green -NoNewline
-    $start_time = Get-Date
-    Invoke-WebRequest https://static.shodan.io/downloads/$progDownload -OutFile "$DesktopFolder\Downloads\$progDownload"
-    Write-Host "$((Get-Date).Subtract($start_time).Seconds) segundo(s)" -ForegroundColor Yellow
-} else {
-    Write-Host "Shodan Entities ya esta descargado" -ForegroundColor Yellow
-}
+# $progDownload = "shodan-maltego-entities.mtz"
+# if (!(Test-Path -Path "$DesktopFolder\Downloads\$progDownload")) {
+#     Write-Host "Descargando Shodan Entities ... " -ForegroundColor Green -NoNewline
+#     $start_time = Get-Date
+#     Invoke-WebRequest https://static.shodan.io/downloads/$progDownload -OutFile "$DesktopFolder\Downloads\$progDownload"
+#     Write-Host "$((Get-Date).Subtract($start_time).Seconds) segundo(s)" -ForegroundColor Yellow
+# } else {
+#     Write-Host "Shodan Entities ya esta descargado" -ForegroundColor Yellow
+# }
 
 # Descarga Java
-$progDownload = "jre-8u191-windows-i586.exe"
-if (!(Test-Path -Path "$DesktopFolder\Downloads\$progDownload")) {
-    Write-Host "Descargando JRE ... " -ForegroundColor Green -NoNewline
-    $start_time = Get-Date
-    Invoke-WebRequest https://javadl.oracle.com/webapps/download/AutoDL?BundleId=235725_2787e4a523244c269598db4e85c51e0c -OutFile "$DesktopFolder\Downloads\$progDownload"
-    Write-Host "$((Get-Date).Subtract($start_time).Seconds) segundo(s)" -ForegroundColor Yellow
-} else {
-    Write-Host "JRE ya esta descargado" -ForegroundColor Yellow
-}
-#>
+# $progDownload = "jre-8u191-windows-i586.exe"
+# if (!(Test-Path -Path "$DesktopFolder\Downloads\$progDownload")) {
+#     Write-Host "Descargando JRE ... " -ForegroundColor Green -NoNewline
+#     $start_time = Get-Date
+#     Invoke-WebRequest https://javadl.oracle.com/webapps/download/AutoDL?BundleId=235725_2787e4a523244c269598db4e85c51e0c -OutFile "$DesktopFolder\Downloads\$progDownload"
+#     Write-Host "$((Get-Date).Subtract($start_time).Seconds) segundo(s)" -ForegroundColor Yellow
+# } else {
+#     Write-Host "JRE ya esta descargado" -ForegroundColor Yellow
+# }
 
 # Configuración de IP estática
 #Write-Host "Configurando Static IP ... " -ForegroundColor Green -NoNewline
@@ -365,11 +364,11 @@ net.exe user test3 /add Passw0rd! >$null
 #$tecla = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
 #
 # Descarga Wazuh Agent
-$progDownload = "wazuh-agent-4.2.1-1.msi"
+$progDownload = "wazuh-agent-4.3.0-1.msi"
 if (!(Test-Path -Path "$DesktopFolder\Downloads\$progDownload")) {
     Write-Host "Descargando Wazuh Agent ... " -ForegroundColor Green -NoNewline
     $start_time = Get-Date
-    Invoke-WebRequest "https://packages.wazuh.com/4.x/windows/wazuh-agent-4.2.1-1.msi" -OutFile "$DesktopFolder\Downloads\$progDownload"
+    Invoke-WebRequest "https://packages.wazuh.com/4.x/windows/$progDownload" -OutFile "$DesktopFolder\Downloads\$progDownload"
     Write-Host "$((Get-Date).Subtract($start_time).Seconds) segundo(s)" -ForegroundColor Yellow
 } else {
     Write-Host "Wazuh Agent ya estaba descargado" -ForegroundColor Yellow
