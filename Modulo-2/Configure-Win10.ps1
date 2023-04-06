@@ -63,7 +63,7 @@ if (!(Test-Path -Path "$DesktopFolder\Downloads")) { mkdir "$DesktopFolder\Downl
 # https://blog.jourdant.me/post/3-ways-to-download-files-with-powershell
 
 # Descarga 7-Zip
-$progDownload = "7z2107-x64.msi"
+$progDownload = "7z2201-x64.msi"
 if (!(Test-Path -Path "$DesktopFolder\Downloads\$progDownload")) {
     Write-Host "Descargando 7-Zip ... " -ForegroundColor Green -NoNewline
     $start_time = Get-Date
