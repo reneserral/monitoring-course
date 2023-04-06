@@ -13,7 +13,7 @@ Vagrant.configure("2") do |config|
     end
     debianbullseye1.vm.box = "debian/bullseye64"
     debianbullseye1.vm.hostname = "debianbullseye1"
-    debianbullseye1.vm.network :private_network, ip: "192.168.38.11"
+    debianbullseye1.vm.network :private_network, ip: "192.168.56.11"
     debianbullseye1.vm.provision "shell", inline: <<-SHELL
       apt update
       apt upgrade -y
@@ -23,7 +23,7 @@ Vagrant.configure("2") do |config|
       curl -s https://packages.wazuh.com/key/GPG-KEY-WAZUH | apt-key add -
       echo "deb https://packages.wazuh.com/4.x/apt/ stable main" | tee -a /etc/apt/sources.list.d/wazuh.list
       apt-get update
-      WAZUH_MANAGER="192.168.38.10" apt-get install wazuh-agent
+      WAZUH_MANAGER="192.168.56.10" apt-get install wazuh-agent
       systemctl daemon-reload
       systemctl enable wazuh-agent
       systemctl start wazuh-agent
@@ -36,7 +36,7 @@ Vagrant.configure("2") do |config|
     end
     debianbullseye2.vm.box = "debian/bullseye64"
     debianbullseye2.vm.hostname = "debianbullseye2"
-    debianbullseye2.vm.network :private_network, ip: "192.168.38.12"
+    debianbullseye2.vm.network :private_network, ip: "192.168.56.12"
     debianbullseye2.vm.provision "shell", inline: <<-SHELL
       apt update
       apt upgrade -y
@@ -46,7 +46,7 @@ Vagrant.configure("2") do |config|
       curl -s https://packages.wazuh.com/key/GPG-KEY-WAZUH | apt-key add -
       echo "deb https://packages.wazuh.com/4.x/apt/ stable main" | tee -a /etc/apt/sources.list.d/wazuh.list
       apt-get update
-      WAZUH_MANAGER="192.168.38.10" apt-get install wazuh-agent
+      WAZUH_MANAGER="192.168.56.10" apt-get install wazuh-agent
       systemctl daemon-reload
       systemctl enable wazuh-agent
       systemctl start wazuh-agent
@@ -64,7 +64,7 @@ Vagrant.configure("2") do |config|
     end
 
     wazuh.vm.hostname = "wazuh"
-    wazuh.vm.network :private_network, ip: "192.168.38.10"
+    wazuh.vm.network :private_network, ip: "192.168.56.10"
     wazuh.vm.box = "uahccre/wazuh-manager"
   end
 
@@ -75,7 +75,7 @@ Vagrant.configure("2") do |config|
       vb.customize ["modifyvm", :id, "--memory", "2048", "--cpus", "2"]
     end
     windows10.vm.hostname = "windows10"
-    windows10.vm.network :private_network, ip: "192.168.38.21"
+    windows10.vm.network :private_network, ip: "192.168.56.21"
     windows10.vm.box = "peru/windows-10-enterprise-x64-eval"
     windows10.vm.provision "shell", path: "https://raw.githubusercontent.com/rene-serral/monitoring-course/main/Modulo-2/Configure-base.bat"
   end
@@ -85,7 +85,7 @@ Vagrant.configure("2") do |config|
       vb.customize ["modifyvm", :id, "--memory", "2048", "--cpus", "2"]
     end
     windows2022.vm.hostname = "windows"
-    windows2022.vm.network :private_network, ip: "192.168.38.20"
+    windows2022.vm.network :private_network, ip: "192.168.56.20"
     windows2022.vm.box = "peru/windows-server-2022-standard-x64-eval"
     windows2022.vm.box_version = "20210907.01"
     windows2022.vm.provision "shell", path: "https://raw.githubusercontent.com/rene-serral/monitoring-course/main/Modulo-2/Configure-base.bat"
@@ -94,13 +94,13 @@ Vagrant.configure("2") do |config|
   config.vm.define :ossim do |ossim|
     ossim.vm.box = "ifly53e/av_5.7.4"
     ossim.vm.box_version = "0.0.1"
-    ossim.vm.network :private_network, ip: "192.168.38.200"
+    ossim.vm.network :private_network, ip: "192.168.56.200"
   end
 
   config.vm.define :splunk do |splunk|
     splunk.vm.box = "cybersecurity/splunk"
     splunk.vm.box_version = "0.0.1"
-    splunk.vm.network :private_network, ip: "192.168.38.13"
+    splunk.vm.network :private_network, ip: "192.168.56.13"
   end
 
 end
