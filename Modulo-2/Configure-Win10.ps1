@@ -112,6 +112,8 @@ if (Test-Path -Path "$DesktopFolder\Git") { Remove-Item -Path "$DesktopFolder\Gi
 & "$DesktopFolder\Downloads\$progDownload" /SILENT
 Write-Host "OK" -ForegroundColor Yellow
 
+$Path = [Environment]::GetEnvironmentVariable("PATH", "Machine") + [IO.Path]::PathSeparator + "$env:ProgramFiles\Git\bin"
+
 # Descarga Sysinternals Suite
 $progDownload = "SysinternalsSuite.zip"
 if (!(Test-Path -Path "$DesktopFolder\Downloads\$progDownload")) {
@@ -218,17 +220,6 @@ Write-Host "Descomprimiendo Event to Syslog ... " -ForegroundColor Green -NoNewl
 if (Test-Path -Path "$DesktopFolder\EventSyslog") { Remove-Item -Path "$DesktopFolder\EventSyslog" -Recurse -Force }
 & "$env:ProgramFiles\7-Zip\7z.exe" e -o"$DesktopFolder\EventSyslog" -y "$DesktopFolder\Downloads\$progDownload" | Out-Null
 Write-Host "OK" -ForegroundColor Yellow
-
-# Descarga NXLog-CE (si cambia la versión, hay que modificar fichero "test-nxlog.bat")
-$progDownload = "nxlog-ce-3.0.2272.msi"
-if (!(Test-Path -Path "$DesktopFolder\Downloads\$progDownload")) {
-    Write-Host "Descargando NXLog-CE ... " -ForegroundColor Green -NoNewline
-    $start_time = Get-Date
-    Invoke-WebRequest https://nxlog.co/system/files/products/files/348/$progDownload -OutFile "$DesktopFolder\Downloads\$progDownload"
-    Write-Host "$((Get-Date).Subtract($start_time).Seconds) segundo(s)" -ForegroundColor Yellow
-} else {
-    Write-Host "NXLog-CE ya esta descargado" -ForegroundColor Yellow
-}
 
 # Descarga Visual Syslog Server
 $progDownload = "visualsyslog_setup.zip"
