@@ -7,9 +7,8 @@ if not "%errorLevel%" == "0" (
     exit /b %errorLevel%
 )
 
-echo Instalando NXLog-CE...
-:: Atención a la versión descargada mediante Configure-Win81-IE11.ps1
-msiexec /passive /i "C:\Users\IEUser\Desktop\MASTER\Downloads\nxlog-ce-2.10.2150.msi"
+echo Descarga primero la última versión de NXLog
+msiexec /passive /i "C:\Users\IEUser\Desktop\MASTER\Downloads\nxlog-ce-3.1.2319.msi"
 
 echo Copiando script nxlog.conf...
 copy /y "%ProgramFiles%\nxlog\conf\nxlog.conf" "%ProgramFiles%\nxlog\conf\nxlog.original.conf" >nul 2>&1
