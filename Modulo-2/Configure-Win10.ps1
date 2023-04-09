@@ -114,6 +114,8 @@ Write-Host "OK" -ForegroundColor Yellow
 
 $Path = [Environment]::GetEnvironmentVariable("PATH", "Machine") + [IO.Path]::PathSeparator + "$env:ProgramFiles\Git\bin"
 
+$git_binary = "C:\Program Files\Git\bin\git.exe"
+
 # Descarga Sysinternals Suite
 $progDownload = "SysinternalsSuite.zip"
 if (!(Test-Path -Path "$DesktopFolder\Downloads\$progDownload")) {
@@ -130,23 +132,6 @@ Write-Host "Descomprimiendo Sysinternals Suite ... " -ForegroundColor Green -NoN
 if (Test-Path -Path "$DesktopFolder\Sysinternals") { Remove-Item -Path "$DesktopFolder\Sysinternals" -Recurse -Force }
 & "$env:ProgramFiles\7-Zip\7z.exe" x -o"$DesktopFolder\Sysinternals" -y "$DesktopFolder\Downloads\$progDownload" | Out-Null
 Write-Host "OK" -ForegroundColor Yellow
-
-# Descarga Notepad++
-#$progDownload = "npp.8.3.portable.x64.7z"
-#if (!(Test-Path -Path "$DesktopFolder\Downloads\$progDownload")) {
-#    Write-Host "Descargando Notepad++ ... " -ForegroundColor Green -NoNewline
-#    $start_time = Get-Date
-#    Invoke-WebRequest https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.3/$progDownload -OutFile "$DesktopFolder\Downloads\$progDownload"
-#    Write-Host "$((Get-Date).Subtract($start_time).Seconds) segundo(s)" -ForegroundColor Yellow
-#} else {
-#    Write-Host "Notepad++ ya esta descargado" -ForegroundColor Yellow
-#}
-#
-## Instalación de Notepad++
-#Write-Host "Descomprimiendo Notepad++ ... " -ForegroundColor Green -NoNewline
-#if (Test-Path -Path "$DesktopFolder\Notepad++") { Remove-Item -Path "$DesktopFolder\Notepad++" -Recurse -Force }
-#& "$env:ProgramFiles\7-Zip\7z.exe" x -o"$DesktopFolder\Notepad++" -y "$DesktopFolder\Downloads\$progDownload" | Out-Null
-#Write-Host "OK" -ForegroundColor Yellow
 
 # Descarga NirCmd
 $progDownload = "nircmd.zip"
@@ -279,8 +264,9 @@ if (!(Test-Path -Path "$DesktopFolder\Sysinternals\sysmonconfig-export-olaf.xml"
 if (Test-Path -Path "$DesktopFolder\Scripts") {
     Remove-Item "$DesktopFolder\Scripts" -Recurse -Force | Out-Null
 }
+
 mkdir "$DesktopFolder\Scripts" -Force | Out-Null
-& "git" clone https://github.com/rene-serral/monitoring-course.git "$DesktopFolder\Scripts"
+& $git_binary clone https://github.com/rene-serral/monitoring-course.git "$DesktopFolder\Scripts"
 
 # Creación carpeta C:\TEST
 if (!(Test-Path -Path "C:\TEST")) { mkdir "C:\TEST" | Out-Null }
