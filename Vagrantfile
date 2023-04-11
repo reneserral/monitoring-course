@@ -87,7 +87,7 @@ Vagrant.configure("2") do |config|
     windows2022.vm.hostname = "windows"
     windows2022.vm.network :private_network, ip: "192.168.56.20"
     windows2022.vm.box = "peru/windows-server-2022-standard-x64-eval"
-    windows2022.vm.box_version = "20210907.01"
+    #windows2022.vm.box_version = "20210907.01"
     windows2022.vm.provision "shell", path: "https://raw.githubusercontent.com/rene-serral/monitoring-course/main/Modulo-2/Configure-base.bat"
   end
 
