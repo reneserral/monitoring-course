@@ -20,10 +20,6 @@ Vagrant.configure("2") do |config|
       apt install -qy git systemd-timesyncd curl gnupg2
       git clone https://github.com/rene-serral/monitoring-course.git ~vagrant/Scripts
       chown vagrant.vagrant -R ~vagrant/Scripts
-      curl -s https://packages.wazuh.com/key/GPG-KEY-WAZUH | apt-key add -
-      echo "deb https://packages.wazuh.com/4.x/apt/ stable main" | tee -a /etc/apt/sources.list.d/wazuh.list
-      apt-get update
-      WAZUH_MANAGER="192.168.56.10" apt-get install wazuh-agent
       systemctl daemon-reload
       systemctl enable wazuh-agent
       systemctl start wazuh-agent
@@ -43,10 +39,6 @@ Vagrant.configure("2") do |config|
       apt install -qy git systemd-timesyncd curl gnupg2
       git clone https://github.com/rene-serral/monitoring-course.git ~vagrant/Scripts
       chown vagrant.vagrant -R ~vagrant/Scripts
-      curl -s https://packages.wazuh.com/key/GPG-KEY-WAZUH | apt-key add -
-      echo "deb https://packages.wazuh.com/4.x/apt/ stable main" | tee -a /etc/apt/sources.list.d/wazuh.list
-      apt-get update
-      WAZUH_MANAGER="192.168.56.10" apt-get install wazuh-agent
       systemctl daemon-reload
       systemctl enable wazuh-agent
       systemctl start wazuh-agent
@@ -66,6 +58,9 @@ Vagrant.configure("2") do |config|
     wazuh.vm.hostname = "wazuh"
     wazuh.vm.network :private_network, ip: "192.168.56.10"
     wazuh.vm.box = "uahccre/wazuh-manager"
+    wazuh.vm.provision "shell", inline: <<-SHELL
+      chown -R elasticsearch.elasticsearch /var/run/elasticsearch
+      SHELL
   end
 
   config.vm.define :windows10 do |windows10|
