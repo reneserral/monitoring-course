@@ -224,41 +224,7 @@ if (Test-Path -Path "$DesktopFolder\VisualSyslog") { Remove-Item -Path "$Desktop
 Write-Host "OK" -ForegroundColor Yellow
 
 # Descarga sysmonconfig-export.xml
-if (!(Test-Path -Path "$DesktopFolder\Sysinternals\sysmonconfig-export-swift.xml")) {
-    Write-Host "Descargando sysmonconfig SwiftOnSecurity ... " -ForegroundColor Green -NoNewline
-    $start_time = Get-Date
-    # Invoke-WebRequest https://github.com/SwiftOnSecurity/sysmon-config/raw/master/sysmonconfig-export.xml -OutFile "$DesktopFolder\Sysinternals\sysmonconfig-export-swift.xml"
-    # https://drive.google.com/file/d/1OFrDCr7nT-agY6Wd9VWA0q3u4qbH_pr4/view?usp=sharing
-    Invoke-WebRequest "https://drive.google.com/uc?id=1OFrDCr7nT-agY6Wd9VWA0q3u4qbH_pr4&export=download" -OutFile "$DesktopFolder\Sysinternals\sysmonconfig-export-swift.xml"
-    # Invoke-WebRequest "https://upc0-my.sharepoint.com/:u:/g/personal/manel_rodero_upc_edu/ERkdSNrfHTtHh9S5tYOKMEsBIW7iSFv9rOxXElgyxAsfjQ?download=1" -OutFile "$DesktopFolder\Sysinternals\sysmonconfig-export-swift.xml"
-    Write-Host "$((Get-Date).Subtract($start_time).Seconds) segundo(s)" -ForegroundColor Yellow
-} else {
-    Write-Host "sysmonconfig SwiftOnSecurity ya esta descargado" -ForegroundColor Yellow
-}
-
-# Descarga sysmonconfig-export.xml
-if (!(Test-Path -Path "$DesktopFolder\Sysinternals\sysmonconfig-export-ion.xml")) {
-    Write-Host "Descargando sysmonconfig Ion-Storm ... " -ForegroundColor Green -NoNewline
-    $start_time = Get-Date
-    # Invoke-WebRequest https://github.com/ion-storm/sysmon-config/raw/master/sysmonconfig-export.xml -OutFile "$DesktopFolder\Sysinternals\sysmonconfig-export-ion.xml"
-    # https://drive.google.com/file/d/1SU9wyYIaWab436COcKjI_fdKEUNnE3EA/view?usp=sharing
-    Invoke-WebRequest "https://drive.google.com/uc?id=1SU9wyYIaWab436COcKjI_fdKEUNnE3EA&export=download" -OutFile "$DesktopFolder\Sysinternals\sysmonconfig-export-ion.xml"
-    # Invoke-WebRequest "https://upc0-my.sharepoint.com/:u:/g/personal/manel_rodero_upc_edu/Ea2Zj_6xhW1Nm-US0xrEYr8BZiQ8BhfbeiyGivVAM-vNLA?download=1" -OutFile "$DesktopFolder\Sysinternals\sysmonconfig-export-ion.xml"
-    Write-Host "$((Get-Date).Subtract($start_time).Seconds) segundo(s)" -ForegroundColor Yellow
-} else {
-    Write-Host "sysmonconfig Ion-Storm ya esta descargado" -ForegroundColor Yellow
-}
-
-# Descarga sysmonconfig-export.xml
-if (!(Test-Path -Path "$DesktopFolder\Sysinternals\sysmonconfig-export-olaf.xml")) {
-    Write-Host "Descargando sysmonconfig Olaf Hartong ... " -ForegroundColor Green -NoNewline
-    $start_time = Get-Date
-    Invoke-WebRequest https://raw.githubusercontent.com/olafhartong/sysmon-modular/master/sysmonconfig.xml -OutFile "$DesktopFolder\Sysinternals\sysmonconfig-export-olaf.xml"
-    # Invoke-WebRequest "https://upc0-my.sharepoint.com/:u:/g/personal/manel_rodero_upc_edu/ES83WRVSPCpKhfn2BcREZXYBKpWcQzD3s_-aoc3aXncH1w?download=1" -OutFile "$DesktopFolder\Sysinternals\sysmonconfig-export-olaf.xml"
-    Write-Host "$((Get-Date).Subtract($start_time).Seconds) segundo(s)" -ForegroundColor Yellow
-} else {
-    Write-Host "sysmonconfig Olaf Hartong ya esta descargado" -ForegroundColor Yellow
-}
+cp 'C:\Users\vagrant\Desktop\MASTER\Scripts\Modulo-2\sysmon\*' C:\Users\vagrant\Desktop\MASTER\Sysinternals\
 
 # Descarga scripts del Máster
 if (Test-Path -Path "$DesktopFolder\Scripts") {
