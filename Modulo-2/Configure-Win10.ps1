@@ -291,7 +291,7 @@ if (!(Test-Path -Path "$DesktopFolder\Downloads\$progDownload")) {
 #Start-Sleep 5
 #netsh.exe interface ipv4 set dnsservers "Ethernet 3" static address=10.0.20.1 register=none
 #Start-Sleep 5
-#netsh.exe interface ipv4 set address "Ethernet 2" static 192.168.38.21 255.255.255.0
+#netsh.exe interface ipv4 set address "Ethernet 2" static 192.168.56.21 255.255.255.0
 #Write-Host "OK" -ForegroundColor Yellow
 
 # Creación de usuarios 'testX'
@@ -319,7 +319,7 @@ if (!(Test-Path -Path "$DesktopFolder\Downloads\$progDownload")) {
 
 # Instalación de Wazuh Agent
 Write-Host "Instalando Wazuh Agent ... " -ForegroundColor Green -NoNewline
-& "$DesktopFolder\Downloads\$progDownload" /q WAZUH_MANAGER="192.168.38.10" WAZUH_REGISTRATION_SERVER="192.168.38.10"
+& "$DesktopFolder\Downloads\$progDownload" /q WAZUH_MANAGER="192.168.56.10" WAZUH_REGISTRATION_SERVER="192.168.56.10"
 Write-Host "OK" -ForegroundColor Yellow
 
 Write-Host "OK, para acabar la configuración vamos a reiniciar la máquina ..."
