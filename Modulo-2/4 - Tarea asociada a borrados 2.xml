@@ -20,7 +20,7 @@
   </Triggers>
   <Principals>
     <Principal id="Author">
-      <UserId>IE11Win8_1\IEUser</UserId>
+      <UserId>WINDOWS10\vagrant</UserId>
       <LogonType>InteractiveToken</LogonType>
       <RunLevel>LeastPrivilege</RunLevel>
     </Principal>
@@ -48,7 +48,7 @@
   </Settings>
   <Actions Context="Author">
     <Exec>
-      <Command>C:\Users\IEUser\Desktop\MASTER\Scripts\Module-2\alerta-pobres.bat</Command>
+      <Command>C:\Users\vagrant\Desktop\MASTER\Scripts\Modulo-2\alerta-pobres.bat</Command>
       <Arguments>$(LOG) $(COMPUTER) $(DATE) $(ACCOUNT) $(TYPE) "$(OBJECT)"</Arguments>
     </Exec>
   </Actions>
