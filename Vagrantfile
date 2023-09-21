@@ -88,7 +88,6 @@ Vagrant.configure("2") do |config|
 
   config.vm.define :ossim do |ossim|
     ossim.vm.box = "ifly53e/av_5.7.4"
-    ossim.vm.box_version = "0.0.1"
     ossim.vm.network :private_network, ip: "192.168.56.200"
   end
 
