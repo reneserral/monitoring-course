@@ -26,7 +26,7 @@ Vagrant.configure("2") do |config|
       vb.customize ["modifyvm", :id, "--memory", "1024", "--cpus", "1"]
     end
     debianbookworm1.vm.provider :libvirt do |lv|
-      lv.memory = 1024
+      lv.memory = 6096
       lv.cpus = 1
     end
     debianbookworm1.vm.box = "debian/bookworm64"
@@ -60,6 +60,7 @@ Vagrant.configure("2") do |config|
     debianbookworm2.vm.box = "debian/bookworm64"
     debianbookworm2.vm.hostname = "debianbookworm2"
     debianbookworm2.vm.network :private_network, ip: "192.168.56.12"
+    debianbookworm2.vm.network :public_network, :dev => "ovs0", :mode => "bridge", :type => "bridge"
     debianbookworm2.vm.provision "shell", inline: <<-SHELL
       apt update
       apt upgrade -y
@@ -74,6 +75,25 @@ Vagrant.configure("2") do |config|
       systemctl daemon-reload
       systemctl enable wazuh-agent
       systemctl start wazuh-agent
+      SHELL
+  end
+
+   config.vm.define :debianbookworm3, primary: true do |debianbookworm3|
+    debianbookworm3.vm.provider :virtualbox do |vb|
+      vb.customize ["modifyvm", :id, "--memory", "1024", "--cpus", "1"]
+    end
+    debianbookworm3.vm.provider :libvirt do |lv|
+      lv.memory = 1024
+      lv.cpus = 1
+    end
+    debianbookworm3.vm.box = "debian/bookworm64"
+    debianbookworm3.vm.hostname = "debianbookworm3"
+    debianbookworm3.vm.network :private_network, ip: "192.168.56.23"
+    debianbookworm3.vm.network :public_network, :dev => "ovs0", :mode => "bridge", :type => "bridge"
+    debianbookworm3.vm.provision "shell", inline: <<-SHELL
+      apt update
+      apt upgrade -y
+      apt install -qy git systemd-timesyncd curl gnupg2
       SHELL
   end
 
@@ -131,10 +151,11 @@ Vagrant.configure("2") do |config|
       lv.memory = 2048
       lv.cpus = 2
     end
+    config.rdp.username = "Administrator"
     windows2022.vm.hostname = "windows"
     windows2022.vm.network :private_network, ip: "192.168.56.20"
     windows2022.vm.box = "peru/windows-server-2022-standard-x64-eval"
-    #windows2022.vm.box_version = "20210907.01"
+    windows2022.vm.box_version = "20231201.01"
     windows2022.vm.provision "shell", path: "https://raw.githubusercontent.com/rene-serral/monitoring-course/main/Modulo-2/Configure-base.bat"
   end
 
