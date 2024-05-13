@@ -83,7 +83,7 @@ $progDownload = "LGPO.zip"
 if (!(Test-Path -Path "$DesktopFolder\Downloads\$progDownload")) {
     Write-Host "Descargando LGPO ... " -ForegroundColor Green -NoNewline
     $start_time = Get-Date
-    Invoke-WebRequest "https://github.com/rene-serral/monitoring-course/blob/main/Soft/Windows/LGPO/LGPO.zip?raw=true" -OutFile "$DesktopFolder\Downloads\$progDownload"
+    Invoke-WebRequest "https://github.com/reneserral/monitoring-course/blob/main/Soft/Windows/LGPO/LGPO.zip?raw=true" -OutFile "$DesktopFolder\Downloads\$progDownload"
     Write-Host "$((Get-Date).Subtract($start_time).Seconds) segundo(s)" -ForegroundColor Yellow
 } else {
     Write-Host "LGPO ya estaba descargado" -ForegroundColor Yellow
@@ -232,7 +232,7 @@ if (Test-Path -Path "$DesktopFolder\Scripts") {
 }
 
 mkdir "$DesktopFolder\Scripts" -Force | Out-Null
-& $git_binary clone https://github.com/rene-serral/monitoring-course.git "$DesktopFolder\Scripts"
+& $git_binary clone https://github.com/reneserral/monitoring-course.git "$DesktopFolder\Scripts"
 
 # Creación carpeta C:\TEST
 if (!(Test-Path -Path "C:\TEST")) { mkdir "C:\TEST" | Out-Null }
